@@ -17,10 +17,8 @@ phases:
       - cd ..
       - zip -g deployment_package.zip lambda_function.py
 
-  post_build:
-    commands:
-      - echo "Updating Lambda..."
-      - aws lambda update-function-code \
-          --function-name github-to-lambda-connect \
-          --zip-file fileb://deployment_package.zip
-      - echo "Deployment completed."
+post_build:
+  commands:
+    - echo "Updating Lambda..."
+    - aws lambda update-function-code --function-name github-to-lambda-connect --zip-file fileb://deployment_package.zip
+    - echo "Deployment completed."
